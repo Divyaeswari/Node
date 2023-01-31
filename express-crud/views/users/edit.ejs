@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Users</title>
+<link rel="stylesheet" href="/stylesheets/style.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>        
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <% if(messages.error) {%>
+        <p style="color:red;" class="alert alert-error mt-4"><%- messages.error%></p>
+      <% } %>
+
+    <% if(messages.success) {%>
+        <p style="color:green;" class="alert alert-success mt-4"><%- messages.success%></p>
+      <% } %>
+<form action="/users/update/<%= uid %>" method="post" name="form1">
+    <div class="form-group">
+        <label for="exampleInputPassword1">Name</label>
+        <input type="text" class="form-control" name="uname" id="uname" placeholder="Enter Name" value="<%= uname %>">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email</label>
+        <input type="email" class="form-control" name="uemail" id="uemail" aria-describedby="emailHelp" placeholder="Enter Email" value="<%= uemail %>">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Gender</label>
+        <br>
+        <% if(ugender=="Male"){%>
+        <tr><td>Male<input type="radio" class="form-control" name="ugender" id="ugender" value="<%=ugender %>" checked></td>
+        <td>Female<input type="radio" class="form-control" name="ugender" id="ugender" value="Female"></td></tr>
+           <%}
+           else{%>
+            <tr><td>Male<input type="radio" class="form-control" name="ugender" id="ugender" value="Male"></td>
+                <td>Female<input type="radio" class="form-control" name="ugender" id="ugender" value="<%=ugender %>" checked></td></tr> 
+              <%
+            }
+            %>     
+    </div>
+    <div class="form-group">
+        <label for="">Phone Number</label>
+        <input type="text" class="form-control" name="uphoneno" id="uphoneno" aria-describedby="" placeholder="Enter PhoneNo" value="<%= uphoneno %>">
+    </div>
+
+    <div class="form-group">
+        <label for="">Language</label>
+        <% if(ulanguage=="ReactJS"){%>
+        <select name="ulanguage" id="ulanguage">
+        <option value="<%=ulanguage %>" selected>React JS</option>
+        <option value="NodeJS">Node JS</option>
+        <option value="PHP">PHP</option>
+        <option value="Python">Python</option>
+        </select>
+        <%}
+           else if(ulanguage=="NodeJS"){%>
+            <select name="ulanguage" id="ulanguage">
+                <option value="ReactJS">React JS</option>
+                <option value="<%=ulanguage %>" selected>Node JS</option>
+                <option value="PHP">PHP</option>
+                <option value="Python">Python</option>
+                </select>
+                <%}
+            else if(ulanguage=="PHP"){%>
+                <select name="ulanguage" id="ulanguage">
+                    <option value="ReactJS">React JS</option>
+                    <option value="NodeJS">Node JS</option>
+                    <option value="<%=ulanguage %>" selected>PHP</option>
+                    <option value="Python">Python</option>
+                    </select>
+                    <%}
+            else{%>
+                <select name="ulanguage" id="ulanguage">
+                    <option value="ReactJS">React JS</option>
+                    <option value="NodeJS">Node JS</option>
+                    <option value="PHP">PHP</option>
+                    <option value="<%=ulanguage %>" selected>Python</option>
+                    </select>
+                    <%
+                }
+                %>
+       </div>
+
+       <div class="form-group">
+        <label for="">Interest</label>
+        <% if(uinterest=="ListeningMusic"){%>
+        <input type="checkbox" id="uinterest" name="uinterest" value="<%=uinterest %>" checked>Listening Music
+        <input type="checkbox" id="uinterest" name="uinterest" value="ReadingBooks">Reading Books
+        <input type="checkbox" id="uinterest" name="uinterest" value="Playing">Playing
+        <%}
+        else if(uinterest=="ReadingBooks"){%>
+        <input type="checkbox" id="uinterest" name="uinterest" value="ListeningMusic">Listening Music
+        <input type="checkbox" id="uinterest" name="uinterest" value="<%=uinterest %>" checked>Reading Books
+        <input type="checkbox" id="uinterest" name="uinterest" value="Playing">Playing
+        <%}
+        else{%>
+        <input type="checkbox" id="uinterest" name="uinterest" value="ListeningMusic">Listening Music
+        <input type="checkbox" id="uinterest" name="uinterest" value="ReadingBooks">Reading Books
+        <input type="checkbox" id="uinterest" name="uinterest" value="<%=uinterest %>" checked>Playing
+        <%
+    }
+    %>
+       </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Message</label>
+        <textarea class="form-control" name="umessage" id="umessage" rows="3" cols="4" placeholder="Comments" value="<%=umessage %>"></textarea>
+    </div>
+    <button type="submit" class="btn btn-info">Update</button></form>
+    
+</body>
+</html>
